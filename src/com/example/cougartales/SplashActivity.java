@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseTwitterUtils;
+import com.parse.PushService;
 
 public class SplashActivity extends Activity {
 
@@ -29,6 +31,9 @@ public class SplashActivity extends Activity {
 		ParseObject.registerSubclass(Team.class);
 
 		Parse.initialize(this, PARSE_APPLICATION_ID, PARSE_CLIENT_KEY);
+		ParseInstallation.getCurrentInstallation().saveInBackground();
+
+		PushService.setDefaultPushCallback(this, MainActivity.class);
 		ParseTwitterUtils.initialize(TWITTER_CONSUMER_KEY,
 				TWITTER_CONSUMER_SECRET);
 
