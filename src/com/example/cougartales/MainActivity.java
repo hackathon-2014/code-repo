@@ -91,8 +91,6 @@ public class MainActivity extends ListActivity {
 			public void done(ParseUser user, ParseException err) {
 				if (user != null) {
 					Log.d("Login", "Login successful!");
-					startActivity(new Intent(MainActivity.this,
-							MainFeedActivity.class));
 				} else if (err != null) {
 					Log.e("Login", err.getMessage());
 				}
