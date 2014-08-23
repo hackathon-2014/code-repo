@@ -111,8 +111,8 @@ public class MainFeedListAdapter extends ArrayAdapter<Game> {
 
 		
 		if(viewHolder.playing) {
-		//viewHolder.homeTeam.setText(items.get(position).getHomeTeam().getName());
-		//viewHolder.awayTeam.setText(items.get(position).getAwayTeam().getName());
+		viewHolder.homeTeam.setText(items.get(position).getHomeTeam().getName());
+		viewHolder.awayTeam.setText(items.get(position).getAwayTeam().getName());
 		viewHolder.sport.setText(items.get(position).getSport());
 		viewHolder.score.setText(items.get(position).getHomeScore()+" - " + items.get(position).getAwayScore());
 		}
