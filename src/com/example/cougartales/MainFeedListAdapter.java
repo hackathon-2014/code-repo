@@ -49,29 +49,25 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 			final ViewGroup parent) {
 		ViewHolder viewHolder;
 		View view = convertView;
-		boolean playing = false;
 
 		if (view == null) {
+			viewHolder = new ViewHolder();
 
 			if (items.get(position).getBoolean("isPlaying")) {
 				view = LayoutInflater.from(mContext).inflate(
 						R.layout.score_known_list_item, parent, false);
 
-				viewHolder = new ViewHolder();
 				view.setTag(viewHolder);
 
-				
 				viewHolder.nameTextView = (TextView) view
 						.findViewById(R.id.textView1);
 				viewHolder.pb = (ProgressBar) view
 						.findViewById(R.id.progressBar1);
-				playing = true;
+				viewHolder.playing = true;
 			} else {
 				view = LayoutInflater.from(mContext).inflate(
 						R.layout.main_feed__item, parent, false);
 
-				
-				viewHolder = new ViewHolder();
 				view.setTag(viewHolder);
 
 				viewHolder.nameTextView = (TextView) view
@@ -80,6 +76,8 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 						.findViewById(R.id.progressBar1);
 				viewHolder.twitterPic = (ImageView) view
 						.findViewById(R.id.imageView1);
+				viewHolder.playing = false;
+
 			}
 
 		} else {
@@ -87,7 +85,7 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 
 		}
 
-		initItemUI(viewHolder, position, playing);
+		initItemUI(viewHolder, position);
 
 		return view;
 	}
@@ -102,12 +100,11 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 		return mMemoryCache.get(key);
 	}
 
-	private void initItemUI(final ViewHolder viewHolder, int position,
-			boolean playing) {
+	private void initItemUI(final ViewHolder viewHolder, int position) {
 
 		viewHolder.nameTextView.setText(items.get(position).getString(
 				"teamName"));
-		if (!playing) {
+		if (!viewHolder.playing) {
 			Ion.with(mContext).load(items.get(position).getString("imgUrl"))
 					.progressBar(viewHolder.pb).withBitmap()
 					.error(R.drawable.ic_launcher)
@@ -128,6 +125,7 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 		TextView nameTextView;
 		ImageView twitterPic;
 		ProgressBar pb;
+		boolean playing;
 
 	}
 
