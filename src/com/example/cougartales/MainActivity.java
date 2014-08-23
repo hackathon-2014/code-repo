@@ -37,6 +37,8 @@ public class MainActivity extends ListActivity {
 		setContentView(R.layout.activity_main);
 
 		// setup Parse with Twitter
+		ParseObject.registerSubclass(Game.class);
+		ParseObject.registerSubclass(Team.class);
 		Parse.initialize(this, PARSE_APPLICATION_ID, PARSE_CLIENT_KEY);
 		ParseTwitterUtils.initialize(TWITTER_CONSUMER_KEY,
 				TWITTER_CONSUMER_SECRET);
