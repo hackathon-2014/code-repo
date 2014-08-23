@@ -2,15 +2,10 @@ package com.example.cougartales;
 
 import java.util.List;
 
-<<<<<<< HEAD
-import org.json.JSONException;
-
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
-=======
 import android.app.ActionBar;
->>>>>>> 729e92dca1900b65bb09fc3d3d8c5c050a623d69
 import android.app.ListActivity;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -35,20 +30,6 @@ public class MainActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-
-		if (ParseUser.getCurrentUser() != null) {
-			try {
-				Log.d("Screen Name",
-						ParseUser.getCurrentUser().getJSONObject("authData")
-								.getJSONObject("twitter")
-								.getString("screen_name"));
-			} catch (JSONException e) {
-				Log.e("Error", e.getMessage());
-			}
-		} else {
-			Log.d("Report", "No user logged in");
-		}
 
 		final com.parse.twitter.Twitter parseTwitter = ParseTwitterUtils
 				.getTwitter();
@@ -80,13 +61,11 @@ public class MainActivity extends ListActivity {
 			}
 		});
 
-=======
 		ActionBar mActionBar = getActionBar();
 		mActionBar.setBackgroundDrawable(new ColorDrawable(0xff800000));
 		mActionBar.setDisplayShowTitleEnabled(false);
 		mActionBar.setDisplayShowTitleEnabled(true);
 		
->>>>>>> 729e92dca1900b65bb09fc3d3d8c5c050a623d69
 		ParseQuery<Game> query = ParseQuery.getQuery(Game.class);
 		query.findInBackground(new FindCallback<Game>() {
 			public void done(List<Game> scoreList, ParseException e) {
