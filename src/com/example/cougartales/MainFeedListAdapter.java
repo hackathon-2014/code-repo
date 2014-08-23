@@ -72,16 +72,14 @@ public class MainFeedListAdapter extends ArrayAdapter<Game> {
 
 			} else {
 				view = LayoutInflater.from(mContext).inflate(
-						R.layout.main_feed__item, parent, false);
+						R.layout.date_known_item, parent, false);
 
 				view.setTag(viewHolder);
 
-				viewHolder.nameTextView = (TextView) view
+				viewHolder.homeTeam = (TextView) view
 						.findViewById(R.id.textView1);
-				viewHolder.pb = (ProgressBar) view
-						.findViewById(R.id.progressBar1);
-				viewHolder.twitterPic = (ImageView) view
-						.findViewById(R.id.imageView1);
+				viewHolder.awayTeam = (TextView) view
+						.findViewById(R.id.textView3);
 				viewHolder.playing = false;
 
 			}
@@ -138,6 +136,7 @@ public class MainFeedListAdapter extends ArrayAdapter<Game> {
 		TextView homeTeam;
 		TextView score;
 		TextView sport;
+		TextView date;
 		
 		TextView awayTeam;
 		boolean playing;
