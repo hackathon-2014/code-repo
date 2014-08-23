@@ -14,13 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
-import com.parse.ParseObject;
-
 public class MainFeedListAdapter extends ArrayAdapter<Game> {
 
-	private int res = 0;
 	private Context mContext;
 	private final LruCache<Integer, Bitmap> mMemoryCache;
 	private List<Game> items;

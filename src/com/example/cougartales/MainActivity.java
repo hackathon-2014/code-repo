@@ -1,10 +1,8 @@
 package com.example.cougartales;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,9 +11,7 @@ import android.view.View;
 
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseTwitterUtils;
 import com.parse.ParseUser;
@@ -24,7 +20,6 @@ public class MainActivity extends ListActivity {
 
 	private MainFeedListAdapter adapter;
 
-	private List<Game> poList;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
