@@ -44,7 +44,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/textView4"
         android:text="Mens Soccer"
-        android:textSelectHandleLeft="light"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
