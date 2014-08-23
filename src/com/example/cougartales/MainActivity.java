@@ -24,7 +24,6 @@ public class MainActivity extends ListActivity {
 
 	private MainFeedListAdapter adapter;
 
-	private List<Game> poList;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
