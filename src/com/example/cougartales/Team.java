@@ -1,5 +1,7 @@
 package com.example.cougartales;
 
+import java.util.List;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -15,6 +17,28 @@ public class Team extends ParseObject {
 	
 	public void setName(String name) {
 		put("name", name);
+	}
+	
+	/*
+	 * NICKNAMES
+	 */
+	public List<String> getNicknames() {
+		return getList("nicknames");
+	}
+	
+	public void setNicknames(List<String> nicknames) {
+		put("nicknames", nicknames);
+	}
+	
+	/*
+	 * SPORT
+	 */
+	public String getSport() {
+		return getString("sport");
+	}
+	
+	public void setSport(String sport) {
+		put("sport", sport);
 	}
 	
 	/*

@@ -42,7 +42,6 @@ public class MainActivity extends ListActivity {
 		Parse.initialize(this, PARSE_APPLICATION_ID, PARSE_CLIENT_KEY);
 		ParseTwitterUtils.initialize(TWITTER_CONSUMER_KEY,
 				TWITTER_CONSUMER_SECRET);
-
 		
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("CharlestonTeam");
 		query.findInBackground(new FindCallback<ParseObject>() {
