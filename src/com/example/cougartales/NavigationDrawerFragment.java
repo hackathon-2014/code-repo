@@ -115,7 +115,7 @@ public class NavigationDrawerFragment extends Fragment {
 							int position, long id) {
 						selectItem(position);
 						
-						Intent i = new Intent(getActivity().getApplicationContext(), NewMainActivity.class);
+						Intent i = new Intent(getActivity().getApplicationContext(), TeamFeedActivity.class);
 						i.putExtra("teamObjectId", teams.get(position).getObjectId());
 						startActivity(i);
 					}
