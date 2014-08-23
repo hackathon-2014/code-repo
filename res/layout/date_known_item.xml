@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+   
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -14,11 +16,22 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="VS\nAugust 31\n7:05 PM"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView4"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:text="James\nMadison"
@@ -29,20 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignRight="@+id/textView4"
         android:text="Mens Soccer"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSelectHandleLeft="light" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="7dp"
-        android:text="1 - 5"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+        android:textSelectHandleLeft="light"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
