@@ -12,20 +12,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.parse.ParseObject;
 
-public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
+public class MainFeedListAdapter extends ArrayAdapter<Game> {
 
 	private int res = 0;
 	private Context mContext;
 	private final LruCache<Integer, Bitmap> mMemoryCache;
-	private List<ParseObject> items;
+	private List<Game> items;
 
 	public MainFeedListAdapter(Context context, int resource,
-			List<ParseObject> objects) {
+			List<Game> objects) {
 		super(context, resource, objects);
 
 		items = objects;
@@ -51,7 +52,8 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 		if (view == null) {
 			viewHolder = new ViewHolder();
 
-			if (items.get(position).getBoolean("isPlaying")) {
+			if (items.get(position).isInProgress()) {
+				Toast.makeText(mContext, "in progress", Toast.LENGTH_SHORT).show();
 				view = LayoutInflater.from(mContext).inflate(
 						R.layout.score_known_list_item, parent, false);
 
@@ -62,6 +64,12 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 				viewHolder.pb = (ProgressBar) view
 						.findViewById(R.id.progressBar1);
 				viewHolder.playing = true;
+				
+				viewHolder.homeTeam = (TextView) view.findViewById(R.id.textView1);
+				viewHolder.awayTeam = (TextView) view.findViewById(R.id.textView3);
+				viewHolder.sport = (TextView) view.findViewById(R.id.textView2);
+				viewHolder.score = (TextView) view.findViewById(R.id.textView4);
+
 			} else {
 				view = LayoutInflater.from(mContext).inflate(
 						R.layout.main_feed__item, parent, false);
@@ -100,8 +108,12 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 
 	private void initItemUI(final ViewHolder viewHolder, int position) {
 
-		viewHolder.nameTextView.setText(items.get(position).getString(
-				"teamName"));
+		
+		
+		//viewHolder.homeTeam.setText(items.get(position).getHomeTeam().getName());
+		//viewHolder.awayTeam.setText(items.get(position).getAwayTeam().getName());
+		viewHolder.sport.setText(items.get(position).getSport());
+		viewHolder.score.setText(items.get(position).getHomeScore()+" - " + items.get(position).getAwayScore());
 		if (!viewHolder.playing) {
 			Ion.with(mContext).load(items.get(position).getString("imgUrl"))
 					.progressBar(viewHolder.pb).withBitmap()
@@ -123,6 +135,11 @@ public class MainFeedListAdapter extends ArrayAdapter<ParseObject> {
 		TextView nameTextView;
 		ImageView twitterPic;
 		ProgressBar pb;
+		TextView homeTeam;
+		TextView score;
+		TextView sport;
+		
+		TextView awayTeam;
 		boolean playing;
 
 	}
