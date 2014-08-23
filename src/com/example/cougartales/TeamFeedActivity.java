@@ -43,7 +43,7 @@ public class TeamFeedActivity extends Activity {
 			protected List<twitter4j.Status> doInBackground(Twitter... twitters) {
 				try {
 					Twitter twitter = twitters[0];
-					return twitter.getUserTimeline("zeringus");
+					return twitter.getUserTimeline(team.getTwitterHandle());
 
 				} catch (TwitterException e) {
 					// TODO Auto-generated catch block
