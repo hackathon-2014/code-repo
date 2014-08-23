@@ -2,6 +2,11 @@ package com.example.cougartales;
 
 import java.util.List;
 
+import org.json.JSONException;
+
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseTwitterUtils;
 import com.parse.ParseUser;
+import com.parse.internal.AsyncCallback;
 
 public class MainActivity extends ListActivity {
 
@@ -24,20 +30,64 @@ public class MainActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
+		if (ParseUser.getCurrentUser() != null) {
+			try {
+				Log.d("Screen Name",
+						ParseUser.getCurrentUser().getJSONObject("authData")
+								.getJSONObject("twitter")
+								.getString("screen_name"));
+			} catch (JSONException e) {
+				Log.e("Error", e.getMessage());
+			}
+		} else {
+			Log.d("Report", "No user logged in");
+		}
+
+		final com.parse.twitter.Twitter parseTwitter = ParseTwitterUtils
+				.getTwitter();
+		parseTwitter.authorize(this, new AsyncCallback() {
+
+			@Override
+			public void onSuccess(Object arg0) {
+				Log.d("Twitter Auth Token", parseTwitter.getAuthToken());
+				Log.d("Twitter Auth Token Secret",
+						parseTwitter.getAuthTokenSecret());
+
+				Twitter twitter = TwitterFactory.getSingleton();
+				twitter.setOAuthConsumer(parseTwitter.getConsumerKey(),
+						parseTwitter.getConsumerSecret());
+				twitter.setOAuthAccessToken(new AccessToken(parseTwitter
+						.getAuthToken(), parseTwitter.getAuthTokenSecret()));
+			}
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onCancel() {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
 		ParseQuery<Game> query = ParseQuery.getQuery(Game.class);
 		query.findInBackground(new FindCallback<Game>() {
-		    public void done(List<Game> scoreList, ParseException e) {
-		        if (e == null) {
-		            Log.d("score", "Retrieved " + scoreList.size() + " scores");
+			public void done(List<Game> scoreList, ParseException e) {
+				if (e == null) {
+					Log.d("score", "Retrieved " + scoreList.size() + " scores");
 
-		    		adapter = new MainFeedListAdapter(MainActivity.this, R.layout.main_feed__item, scoreList);
+					adapter = new MainFeedListAdapter(MainActivity.this,
+							R.layout.main_feed__item, scoreList);
 
-		    		setListAdapter(adapter);
-		        } else {
-		            Log.d("score", "Error: " + e.getMessage());
-		        }
-		    }
+					setListAdapter(adapter);
+				} else {
+					Log.d("score", "Error: " + e.getMessage());
+				}
+			}
 		});
 
 	}
