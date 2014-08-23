@@ -4,17 +4,12 @@ import java.util.Date;
 
 import android.util.Log;
 
-import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 
 @ParseClassName("Game")
 public class Game extends ParseObject {
-
-	// cached home and away teams
-	Team homeTeam;
-	Team awayTeam;
 
 	/*
 	 * SPORT
@@ -31,20 +26,16 @@ public class Game extends ParseObject {
 	 * HOME TEAM
 	 */
 	public Team getHomeTeam() {
-		if (homeTeam == null || homeTeam.getObjectId() != getString("homeTeam")) {
-			try {
-				homeTeam = createWithoutData(Team.class, getString("homeTeam"))
-						.fetch();
-			} catch (ParseException e) {
-				Log.e("getHomeTeam", e.getMessage());
-			}
+		try {
+			return getParseObject("homeTeam").<Team>fetch();
+		} catch (ParseException e) {
+			Log.e("getHomeTeam", e.getMessage());
+			return null;
 		}
-
-		return homeTeam;
 	}
 
-	public void setHomeTeam(Team awayTeam) {
-		put("awayTeam", awayTeam.getObjectId());
+	public void setHomeTeam(Team homeTeam) {
+		put("homeTeam", homeTeam);
 	}
 
 	/*
@@ -62,16 +53,12 @@ public class Game extends ParseObject {
 	 * AWAY TEAM
 	 */
 	public Team getAwayTeam() {
-		if (awayTeam == null || awayTeam.getObjectId() != getString("awayTeam")) {
-			try {
-				awayTeam = createWithoutData(Team.class, getString("awayTeam"))
-						.fetch();
-			} catch (ParseException e) {
-				Log.e("getAwayTeam", e.getMessage());
-			}
+		try {
+			return getParseObject("awayTeam").<Team>fetch();
+		} catch (ParseException e) {
+			Log.e("getAwayTeam", e.getMessage());
+			return null;
 		}
-
-		return awayTeam;
 	}
 
 	public void setAwayTeam(Team awayTeam) {
