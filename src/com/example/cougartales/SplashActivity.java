@@ -1,14 +1,13 @@
 package com.example.cougartales;
 
-import com.parse.Parse;
-import com.parse.ParseObject;
-import com.parse.ParseTwitterUtils;
-
-import android.app.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseTwitterUtils;
 
 public class SplashActivity extends Activity {
 
