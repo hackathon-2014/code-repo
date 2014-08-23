@@ -5,6 +5,7 @@ public class CharlestonTeam {
 	private String picUrl;
 	private int myScore;
 	private int  oppScore;
+	private boolean scoreKnown = false;
 	
 	
 	public String getHandle() {
