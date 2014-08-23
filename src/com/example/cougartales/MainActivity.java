@@ -2,7 +2,9 @@ package com.example.cougartales;
 
 import java.util.List;
 
+import android.app.ActionBar;
 import android.app.ListActivity;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -24,6 +26,10 @@ public class MainActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		ActionBar mActionBar = getActionBar();
+		mActionBar.setBackgroundDrawable(new ColorDrawable(0xff800000));
+		mActionBar.setDisplayShowTitleEnabled(false);
+		mActionBar.setDisplayShowTitleEnabled(true);
 		
 		ParseQuery<Game> query = ParseQuery.getQuery(Game.class);
 		query.findInBackground(new FindCallback<Game>() {
