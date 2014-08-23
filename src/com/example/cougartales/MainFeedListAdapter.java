@@ -80,7 +80,10 @@ public class MainFeedListAdapter extends ArrayAdapter<Game> {
 						.findViewById(R.id.textView1);
 				viewHolder.awayTeam = (TextView) view
 						.findViewById(R.id.textView3);
+				viewHolder.date = (TextView) view.findViewById(R.id.textView4);
 				viewHolder.playing = false;
+				viewHolder.sport = (TextView) view.findViewById(R.id.textView2);
+
 
 			}
 
@@ -107,23 +110,32 @@ public class MainFeedListAdapter extends ArrayAdapter<Game> {
 	private void initItemUI(final ViewHolder viewHolder, int position) {
 
 		
-		
+		if(viewHolder.playing) {
 		//viewHolder.homeTeam.setText(items.get(position).getHomeTeam().getName());
 		//viewHolder.awayTeam.setText(items.get(position).getAwayTeam().getName());
 		viewHolder.sport.setText(items.get(position).getSport());
 		viewHolder.score.setText(items.get(position).getHomeScore()+" - " + items.get(position).getAwayScore());
-		if (!viewHolder.playing) {
-			Ion.with(mContext).load(items.get(position).getString("imgUrl"))
-					.progressBar(viewHolder.pb).withBitmap()
-					.error(R.drawable.ic_launcher)
-					.intoImageView(viewHolder.twitterPic)
-					.setCallback(new FutureCallback<ImageView>() {
-						@Override
-						public void onCompleted(Exception e, ImageView file) {
+		}
+		else if (!viewHolder.playing) {
+			
+			viewHolder.sport.setText(items.get(position).getSport());
+			items.get(position).getStartTime().toGMTString();
+			//viewHolder.date.setText();
 
-							viewHolder.pb.setVisibility(View.GONE);
-						}
-					});
+			
+			
+			
+//			Ion.with(mContext).load(items.get(position).getString("imgUrl"))
+//					.progressBar(viewHolder.pb).withBitmap()
+//					.error(R.drawable.ic_launcher)
+//					.intoImageView(viewHolder.twitterPic)
+//					.setCallback(new FutureCallback<ImageView>() {
+//						@Override
+//						public void onCompleted(Exception e, ImageView file) {
+//
+//							viewHolder.pb.setVisibility(View.GONE);
+//						}
+//					});
 
 		}
 
