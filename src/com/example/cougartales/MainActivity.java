@@ -1,6 +1,7 @@
 package com.example.cougartales;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,13 +16,26 @@ import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
 
+	private static final String PARSE_APPLICATION_ID = "CoYwoCt5AGoBn8moKltCjUH6Ma2doDq2EdIVPBJa";
+	private static final String PARSE_CLIENT_KEY = "LKVQZ8JPRPZSQeheZvS2riUHqkAnJmwhV9trk9j9";
+
+	private static final String TWITTER_CONSUMER_KEY = "nbnHu4MmqsYrB2UvuLPExSXbl";
+	private static final String TWITTER_CONSUMER_SECRET = "bBOkynKsFeMcbCOBhgdnN2QhHfDLT3hAPTrPgNvcfE1H2jnBvr";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		  Parse.initialize(this, "CoYwoCt5AGoBn8moKltCjUH6Ma2doDq2EdIVPBJa", "LKVQZ8JPRPZSQeheZvS2riUHqkAnJmwhV9trk9j9");
 
-		ParseTwitterUtils.initialize("nbnHu4MmqsYrB2UvuLPExSXbl", "bBOkynKsFeMcbCOBhgdnN2QhHfDLT3hAPTrPgNvcfE1H2jnBvr");
+		// setup Parse with Twitter
+		Parse.initialize(this, PARSE_APPLICATION_ID, PARSE_CLIENT_KEY);
+		ParseTwitterUtils.initialize(TWITTER_CONSUMER_KEY,
+				TWITTER_CONSUMER_SECRET);
+		
+		// go to the feed if the user has already authenticated through Twitter
+		if (ParseUser.getCurrentUser() != null) {
+			startActivity(new Intent(MainActivity.this, MainFeedActivity.class));
+		}
 	}
 
 	@Override
@@ -42,24 +56,19 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void login(View view) {
 		ParseTwitterUtils.logIn(this, new LogInCallback() {
-			  @Override
-			  public void done(ParseUser user, ParseException err) {
-				  if(err!=null)
-					  Log.d("", "error is  " +err.getMessage());
-			    if (user == null) {
-			      Log.d("MyApp", "Uh oh. The user cancelled the Twitter login.");
-			    } else if (user.isNew()) {
-			      Log.d("MyApp", "User signed up and logged in through Twitter!");
-			    } else {
-			      Log.d("MyApp", "User logged in through Twitter!");
-			    }
-			    
-
-			  }
-			});
-		
+			@Override
+			public void done(ParseUser user, ParseException err) {
+				if (user != null) {
+					Log.d("Login", "Login successful!");
+					startActivity(new Intent(MainActivity.this,
+							MainFeedActivity.class));
+				} else if (err != null) {
+					Log.e("Login", err.getMessage());
+				}
+			}
+		});
 	}
 }
