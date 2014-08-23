@@ -31,8 +31,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="Mens Soccer"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSelectHandleLeft="light" />
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/textView4"
