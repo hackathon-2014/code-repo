@@ -53,7 +53,14 @@ public class MainActivity extends Activity {
 		List<CharlestonTeam> a = new LinkedList<CharlestonTeam>();
 		for(int i=0; i<10; i++) 
 		{
+			if(i%2 == 0 ){
+				CharlestonTeam t = new CharlestonTeam();
+				t.setScoreKnown(true);
+				a.add(t);
+			}
+			else {
 			a.add(new CharlestonTeam());
+			}
 		}
 		
 		return a;

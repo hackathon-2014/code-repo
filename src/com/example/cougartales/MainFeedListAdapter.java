@@ -47,9 +47,13 @@ public class MainFeedListAdapter extends ArrayAdapter<CharlestonTeam> {
 		ViewHolder viewHolder;
 		View view = convertView;
 		if (view == null) {
+			if(items.get(position).isScoreKnown()) {
+				view = LayoutInflater.from(mContext).inflate(R.layout.score_known_list_item, parent, false);
+			}
+			else {
 			view = LayoutInflater.from(mContext).inflate(
 					R.layout.main_feed__item, parent, false);
-
+			}
 			viewHolder = new ViewHolder();
 			view.setTag(viewHolder);
 
