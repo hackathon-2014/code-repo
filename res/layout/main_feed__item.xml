@@ -21,4 +21,13 @@
         android:layout_centerHorizontal="true"
         android:text="TextView" />
 
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="16dp" />
+
 </RelativeLayout>

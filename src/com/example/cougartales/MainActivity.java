@@ -11,9 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseTwitterUtils;
 import com.parse.ParseUser;
 
@@ -27,6 +30,7 @@ public class MainActivity extends ListActivity {
 
 	private MainFeedListAdapter adapter;
 
+	private List<ParseObject> poList;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,11 +41,25 @@ public class MainActivity extends ListActivity {
 		ParseTwitterUtils.initialize(TWITTER_CONSUMER_KEY,
 				TWITTER_CONSUMER_SECRET);
 
+		
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("CharlestonTeam");
+		query.findInBackground(new FindCallback<ParseObject>() {
+		    public void done(List<ParseObject> scoreList, ParseException e) {
+		        if (e == null) {
+		            Log.d("score", "Retrieved " + scoreList.size() + " scores");
+
+		    		adapter = new MainFeedListAdapter(MainActivity.this, R.layout.main_feed__item, scoreList);
+
+		    		setListAdapter(adapter);
+		        } else {
+		            Log.d("score", "Error: " + e.getMessage());
+		        }
+		    }
+		});
+		
+		
 		List<CharlestonTeam> teams = genTemptData();
 
-		adapter = new MainFeedListAdapter(this, R.layout.main_feed__item, teams);
-
-		setListAdapter(adapter);
 	}
 
 	@Override
