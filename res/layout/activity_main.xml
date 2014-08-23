@@ -14,7 +14,7 @@
         android:dividerHeight="30.0sp"
                 android:background="#ffffff"
         
-        android:divider="@android:color/transparent"
+        android:divider="@null"
 />
 
     <TextView
