@@ -2,13 +2,22 @@ package com.example.cougartales;
 
 import java.util.Date;
 
-import android.text.format.DateUtils;
-
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 @ParseClassName("Game")
 public class Game extends ParseObject {
+	
+	/*
+	 * SPORT
+	 */
+	public String getSport() {
+		return getString("sport");
+	}
+	
+	public void setSport(String sport) {
+		put("sport", sport);
+	}
 	
 	/*
 	 * HOME TEAM
@@ -52,6 +61,17 @@ public class Game extends ParseObject {
 	
 	public void setAwayScore(int awayScore) {
 		put("awayScore", awayScore);
+	}
+	
+	/*
+	 * START TIME
+	 */
+	public Date getStartTime() {
+		return getDate("startTime");
+	}
+	
+	public void setStartTime(Date startTime) {
+		put("startTime", startTime);
 	}
 	
 	/*
