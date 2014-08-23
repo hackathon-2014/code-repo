@@ -13,6 +13,16 @@ public class CharlestonTeam {
 	}
 
 
+	public boolean isScoreKnown() {
+		return scoreKnown;
+	}
+
+
+	public void setScoreKnown(boolean scoreKnown) {
+		this.scoreKnown = scoreKnown;
+	}
+
+
 	public void setHandle(String handle) {
 		this.handle = handle;
 	}

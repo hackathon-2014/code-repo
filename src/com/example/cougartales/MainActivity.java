@@ -53,8 +53,15 @@ public class MainActivity extends ListActivity {
 
 	public List<CharlestonTeam> genTemptData() {
 		List<CharlestonTeam> a = new LinkedList<CharlestonTeam>();
+		
 		for (int i = 0; i < 10; i++) {
-			a.add(new CharlestonTeam());
+			if (i % 2 == 0) {
+				CharlestonTeam t = new CharlestonTeam();
+				t.setScoreKnown(true);
+				a.add(t);
+			} else {
+				a.add(new CharlestonTeam());
+			}
 		}
 
 		return a;
