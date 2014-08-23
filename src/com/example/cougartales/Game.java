@@ -27,7 +27,7 @@ public class Game extends ParseObject {
 	 */
 	public Team getHomeTeam() {
 		try {
-			return getParseObject("homeTeam").<Team>fetch();
+			return getParseObject("homeTeam").<Team>fetchIfNeeded();
 		} catch (ParseException e) {
 			Log.e("getHomeTeam", e.getMessage());
 			return null;
@@ -54,7 +54,7 @@ public class Game extends ParseObject {
 	 */
 	public Team getAwayTeam() {
 		try {
-			return getParseObject("awayTeam").<Team>fetch();
+			return getParseObject("awayTeam").<Team>fetchIfNeeded();
 		} catch (ParseException e) {
 			Log.e("getAwayTeam", e.getMessage());
 			return null;

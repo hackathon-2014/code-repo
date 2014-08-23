@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,9 +20,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.view.ViewGroup;
 
-import com.example.cougartales.NewMainActivity.PlaceholderFragment;
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -90,14 +93,35 @@ private CharSequence mTitle;
 		
 		ParseQuery<Game> query = ParseQuery.getQuery(Game.class);
 		query.findInBackground(new FindCallback<Game>() {
-			public void done(List<Game> scoreList, ParseException e) {
+			public void done(final List<Game> games, ParseException e) {
 				if (e == null) {
-					Log.d("score", "Retrieved " + scoreList.size() + " scores");
+					Log.d("score", "Retrieved " + games.size() + " scores");
 
 					adapter = new MainFeedListAdapter(MainActivity.this,
-							R.layout.main_feed__item, scoreList);
+							R.layout.main_feed__item, games);
 
 					setListAdapter(adapter);
+					
+					getListView().setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0, View arg1, int index,
+								long arg3) {
+							Game game = games.get(index);
+							
+							Team charleston;
+							
+							if (game.getHomeTeam().getName().equals("College of Charleston")) {
+								charleston = game.getHomeTeam();
+							} else {
+								charleston = game.getAwayTeam();
+							}
+							
+							Intent intent = new Intent(MainActivity.this, TeamFeedActivity.class);
+							intent.putExtra("teamObjectId", charleston.getObjectId());
+							startActivity(intent);
+						}
+					});
 				} else {
 					Log.d("score", "Error: " + e.getMessage());
 				}
