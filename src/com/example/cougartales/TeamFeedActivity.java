@@ -87,6 +87,11 @@ public class TeamFeedActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		
+		if (id == R.id.send) {
+			
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 }
