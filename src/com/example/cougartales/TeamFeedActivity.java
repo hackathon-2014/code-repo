@@ -115,7 +115,7 @@ public class TeamFeedActivity extends Activity {
 						tweet.setText("");
 
 						Toast.makeText(TeamFeedActivity.this, "Tweet sent!",
-								Toast.LENGTH_SHORT);
+								Toast.LENGTH_SHORT).show();
 					};
 
 				}.execute();
