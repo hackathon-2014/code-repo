@@ -88,29 +88,39 @@ public class TeamFeedActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-		
+
 		if (id == R.id.send) {
-			final String message = team.getTwitterHandle() + " " + tweet.getText().toString();
-			
-			new AsyncTask<Void, Void, Void>() {
+			if (!tweet.getText().toString().equals("")) {
 
-				@Override
-				protected Void doInBackground(Void... params) {
+				final String message = team.getTwitterHandle() + " "
+						+ tweet.getText().toString();
 
-					try {
-						TwitterFactory.getSingleton().updateStatus(message);
-					} catch (TwitterException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+				new AsyncTask<Void, Void, Void>() {
+
+					@Override
+					protected Void doInBackground(Void... params) {
+
+						try {
+							TwitterFactory.getSingleton().updateStatus(message);
+						} catch (TwitterException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+						return null;
 					}
-					
-					return null;
-				}
-				
-			}.execute();
-			
-			Toast.makeText(TeamFeedActivity.this, "Tweet sent!", Toast.LENGTH_SHORT);
-			
+
+					protected void onPostExecute(Void result) {
+
+						tweet.setText("");
+
+						Toast.makeText(TeamFeedActivity.this, "Tweet sent!",
+								Toast.LENGTH_SHORT);
+					};
+
+				}.execute();
+			}
+
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

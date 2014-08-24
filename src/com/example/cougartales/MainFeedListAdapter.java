@@ -49,7 +49,6 @@ public class MainFeedListAdapter extends ArrayAdapter<Game> {
 			viewHolder = new ViewHolder();
 
 			if (items.get(position).isInProgress()) {
-				Toast.makeText(mContext, "in progress", Toast.LENGTH_SHORT).show();
 				view = LayoutInflater.from(mContext).inflate(
 						R.layout.score_known_list_item, parent, false);
 
