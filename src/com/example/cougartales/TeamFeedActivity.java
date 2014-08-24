@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -37,7 +38,7 @@ public class TeamFeedActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		getActionBar().setTitle(team.getSport());
 		ActionBar mActionBar = getActionBar();
 		mActionBar.setBackgroundDrawable(new ColorDrawable(0xff800000));
@@ -89,7 +90,26 @@ public class TeamFeedActivity extends Activity {
 		}
 		
 		if (id == R.id.send) {
-			String message = tweet.getText().toString();
+			final String message = team.getTwitterHandle() + " " + tweet.getText().toString();
+			
+			new AsyncTask<Void, Void, Void>() {
+
+				@Override
+				protected Void doInBackground(Void... params) {
+
+					try {
+						TwitterFactory.getSingleton().updateStatus(message);
+					} catch (TwitterException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					return null;
+				}
+				
+			}.execute();
+			
+			Toast.makeText(TeamFeedActivity.this, "Tweet sent!", Toast.LENGTH_SHORT);
 			
 			return true;
 		}
