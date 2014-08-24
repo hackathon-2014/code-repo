@@ -1,5 +1,6 @@
 package com.example.cougartales;
 
+import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -110,11 +111,19 @@ public class MainFeedListAdapter extends ArrayAdapter<Game> {
 		viewHolder.awayTeam.setText(items.get(position).getAwayTeam().getName());
 		viewHolder.sport.setText(items.get(position).getSport());
 		viewHolder.score.setText(items.get(position).getHomeScore()+" - " + items.get(position).getAwayScore());
+		
 		}
 		else if (!viewHolder.playing) {
 			
 			viewHolder.sport.setText(items.get(position).getSport());
 			items.get(position).getStartTime().toGMTString();
+			Date a = items.get(position).getStartTime();
+			String aStr = a.toGMTString();
+			String[] aSplit = aStr.split(" ");
+			String time = aSplit[3].substring(0,5);
+			String dateStr = aSplit[0] + " " + aSplit[1] + "\n" + time;
+			System.out.println(dateStr);
+			viewHolder.date.setText(dateStr);
 			//viewHolder.date.setText();
 
 			

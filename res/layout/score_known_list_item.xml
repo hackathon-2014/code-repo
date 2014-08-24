@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     android:background="#fff" >
 
     <TextView
@@ -12,7 +14,11 @@
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
-        android:text="James\nMadison"
+        android:text="James Madison"
+        android:textSize="24sp"
+        android:scrollHorizontally="false" 
+        android:width="200dp"
+        android:gravity="right"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -21,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Mens Soccer"
+        android:text="Men's Soccer"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -32,6 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="7dp"
         android:text="1 - 5"
+        android:textSize="48sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
@@ -43,6 +50,9 @@
         android:layout_below="@+id/textView2"
         android:layout_marginLeft="15dp"
         android:text="College of\nCharleston"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textSize="24sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:scrollHorizontally="false" 
+        android:width="200dp" />
 
 </RelativeLayout>
