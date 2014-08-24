@@ -2,15 +2,10 @@ package com.example.cougartales;
 
 import java.util.List;
 
-import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-
-import com.parse.ParseException;
-import com.parse.ParseObject;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
@@ -18,12 +13,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+
+import com.parse.ParseException;
+import com.parse.ParseObject;
 
 public class TeamFeedActivity extends Activity {
 
 	private Team team;
+	public EditText tweet;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +68,7 @@ public class TeamFeedActivity extends Activity {
 
 		}.execute(TwitterFactory.getSingleton());
 
+		tweet = (EditText) findViewById(R.id.editText1);
 	}
 
 	@Override
@@ -89,6 +89,7 @@ public class TeamFeedActivity extends Activity {
 		}
 		
 		if (id == R.id.send) {
+			String message = tweet.getText().toString();
 			
 			return true;
 		}
