@@ -60,7 +60,21 @@ public class StatusArrayAdapter extends ArrayAdapter<Status> {
 		viewHolder.tweet.setText(status.getText());
 		viewHolder.sport.setText(status.getUser().getName());
 		viewHolder.twitterHandle.setText("@" + status.getUser().getScreenName());
-		viewHolder.timeAgo.setText(DateUtils.getRelativeTimeSpanString(status.getCreatedAt().getTime(), new Date().getTime(), DateUtils.MINUTE_IN_MILLIS));
+		viewHolder.timeAgo.setText(DateUtils.getRelativeDateTimeString(
+
+		        getContext(), // Suppose you are in an activity or other Context subclass
+
+		        status.getCreatedAt().getTime(), // The time to display
+
+		        DateUtils.MINUTE_IN_MILLIS, // The resolution. This will display only 
+		                                        // minutes (no "3 seconds ago") 
+
+
+		        DateUtils.YEAR_IN_MILLIS, // The maximum resolution at which the time will switch 
+		                         // to default date instead of spans. This will not 
+		                         // display "3 weeks ago" but a full date instead
+
+		        0));
 		
 		// but for brevity, use the ImageView specific builder...
 		Ion.with(viewHolder.userPic)
