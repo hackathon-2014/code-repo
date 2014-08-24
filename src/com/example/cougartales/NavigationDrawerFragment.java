@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -113,6 +114,10 @@ public class NavigationDrawerFragment extends Fragment {
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						selectItem(position);
+						
+						Intent i = new Intent(getActivity().getApplicationContext(), TeamFeedActivity.class);
+						i.putExtra("teamObjectId", teams.get(position).getObjectId());
+						startActivity(i);
 					}
 				});
 		
