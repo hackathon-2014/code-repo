@@ -11,7 +11,9 @@ import twitter4j.TwitterFactory;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,6 +38,12 @@ public class TeamFeedActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		getActionBar().setTitle(team.getSport());
+		ActionBar mActionBar = getActionBar();
+		mActionBar.setBackgroundDrawable(new ColorDrawable(0xff800000));
+		mActionBar.setDisplayShowTitleEnabled(false);
+		mActionBar.setDisplayShowTitleEnabled(true);
 
 		new AsyncTask<Twitter, Long, List<Status>>() {
 

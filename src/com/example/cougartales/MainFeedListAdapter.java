@@ -120,17 +120,6 @@ public class MainFeedListAdapter extends ArrayAdapter<Game> {
 			
 			
 			
-//			Ion.with(mContext).load(items.get(position).getString("imgUrl"))
-//					.progressBar(viewHolder.pb).withBitmap()
-//					.error(R.drawable.ic_launcher)
-//					.intoImageView(viewHolder.twitterPic)
-//					.setCallback(new FutureCallback<ImageView>() {
-//						@Override
-//						public void onCompleted(Exception e, ImageView file) {
-//
-//							viewHolder.pb.setVisibility(View.GONE);
-//						}
-//					});
 
 		}
 
